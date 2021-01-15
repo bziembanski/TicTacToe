@@ -1,3 +1,5 @@
+package model
+
 import tornadofx.ItemViewModel
 
 class ScoreModel(score: Score) : ItemViewModel<Score>(score) {

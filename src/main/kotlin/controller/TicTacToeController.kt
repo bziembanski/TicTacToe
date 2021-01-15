@@ -1,13 +1,20 @@
+package controller
+
 import javafx.application.Platform
+import model.Board
+import model.BoardModel
+import model.Score
+import model.ScoreModel
 import tornadofx.Controller
 import java.util.*
 import kotlin.collections.set
 import kotlin.concurrent.schedule
 
-class TicTacToeController : Controller() {
+class TicTacToeController(private val test: Boolean = false) : Controller() {
     val board = BoardModel(Board())
     val score = ScoreModel(Score())
     private val boardSize = 3
+    private val maxRoundsCount = 5
     private var sign = "X"
     private var movesCount = 0
 
@@ -79,13 +86,13 @@ class TicTacToeController : Controller() {
     private fun updateScore(sign: String) {
         if (sign == "X") {
             score.x.value++
-            if (score.x.value == 5) {
+            if (score.x.value == maxRoundsCount) {
                 score.won.value = "X WINS"
                 score.isGameOver.value = true
             }
         } else {
             score.o.value++
-            if (score.o.value == 5) {
+            if (score.o.value == maxRoundsCount) {
                 score.won.value = "O WINS"
                 score.isGameOver.value = true
             }
@@ -95,12 +102,18 @@ class TicTacToeController : Controller() {
 
     private fun roundEnd() {
         score.isRoundOver.value = true
-        Timer().schedule(5000) {
-            Platform.runLater {
-                score.isRoundOver.value = false
-                resetRound()
+        if(test){
+            resetRound()
+            score.isRoundOver.value = false
+        }else{
+            Timer().schedule(5000) {
+                Platform.runLater {
+                    score.isRoundOver.value = false
+                    resetRound()
+                }
             }
         }
+
     }
 
     private fun resetRound() {

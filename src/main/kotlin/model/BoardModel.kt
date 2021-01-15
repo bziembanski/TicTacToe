@@ -1,3 +1,5 @@
+package model
+
 import tornadofx.ItemViewModel
 
 class BoardModel(board: Board) : ItemViewModel<Board>(board) {

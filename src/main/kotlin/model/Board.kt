@@ -1,3 +1,5 @@
+package model
+
 import javafx.beans.property.SimpleMapProperty
 import javafx.collections.FXCollections
 

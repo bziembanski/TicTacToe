@@ -1,3 +1,7 @@
+package view
+
+import TicTacToeApp
+import controller.TicTacToeController
 import javafx.geometry.HPos
 import javafx.geometry.Pos
 import javafx.geometry.VPos

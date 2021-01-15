@@ -1,3 +1,6 @@
+package view
+
+import TicTacToeApp
 import javafx.geometry.Pos
 import javafx.scene.layout.BorderPane
 import tornadofx.*
